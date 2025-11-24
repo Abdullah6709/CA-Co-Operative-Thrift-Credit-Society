@@ -51,7 +51,7 @@ export const generateMemberPDF = (member) => {
     doc.text(`Member Details - ${memberName}`, 105, 15, { align: 'center' });
 
     doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
+    doc.setTextColor(0, 0, 0);
     doc.text(`Membership Number: ${membershipNumber} | Generated on: ${new Date().toLocaleDateString()}`, 105, 22, { align: 'center' });
 
     let yPosition = 35;
@@ -73,7 +73,7 @@ export const generateMemberPDF = (member) => {
         yPosition += 5;
 
         doc.setFontSize(9);
-        doc.setTextColor(80, 80, 80);
+        doc.setTextColor(0, 0, 0);
 
         fields.forEach(fieldKey => {
             if (yPosition > 270) {
@@ -86,9 +86,9 @@ export const generateMemberPDF = (member) => {
             const displayValue = formatValueForPDF(value);
 
             doc.text(`${fieldName}:`, 16, yPosition);
-            doc.setTextColor(20, 20, 20);
+            doc.setTextColor(0, 0, 0);
             doc.text(displayValue, 70, yPosition);
-            doc.setTextColor(80, 80, 80);
+            doc.setTextColor(0, 0, 0);
 
             yPosition += 6;
         });
@@ -146,7 +146,7 @@ export const generateMembersListPDF = (members) => {
     doc.text('Members List Report', 105, 15, { align: 'center' });
 
     doc.setFontSize(10);
-    doc.setTextColor(100, 100, 100);
+    doc.setTextColor(0, 0, 0);
     doc.text(`Generated on: ${new Date().toLocaleDateString()} | Total Members: ${members.length}`, 105, 22, { align: 'center' });
 
     // Define table headers
@@ -156,13 +156,12 @@ export const generateMembersListPDF = (members) => {
         'Name',
         'Phone',
         'Email',
-        'City',
-        'Civil Score',
+        'Introduced By',
     ];
 
     // Prepare table rows
     const rows = members.map((member, index) => {
-        const civilScore = getValueByPath(member, 'bankDetails.civilScore') || 'N/A';
+        // const civilScore = getValueByPath(member, 'bankDetails.civilScore') || 'N/A';
 
         return [
             index + 1,
@@ -170,8 +169,8 @@ export const generateMembersListPDF = (members) => {
             truncateText(getValueByPath(member, 'personalDetails.nameOfMember') || 'Unknown', 15),
             truncateText(getValueByPath(member, 'personalDetails.phoneNo') || 'N/A', 12),
             truncateText(getValueByPath(member, 'personalDetails.emailId') || 'N/A', 25),
-            truncateText(getValueByPath(member, 'addressDetails.currentResidentalAddress.city') || 'N/A', 12),
-            civilScore.toString(),
+            // truncateText(getValueByPath(member, 'addressDetails.currentResidentalAddress.city') || 'N/A', 12),
+            // civilScore.toString(),
         ];
     });
 
@@ -183,6 +182,7 @@ export const generateMembersListPDF = (members) => {
         styles: {
             fontSize: 8,
             cellPadding: 3,
+            textColor: [0, 0, 0],
         },
         headStyles: {
             fillColor: [40, 53, 147],
@@ -192,13 +192,14 @@ export const generateMembersListPDF = (members) => {
         },
         alternateRowStyles: {
             fillColor: [245, 245, 245],
+            textColor: [0, 0, 0],
         },
     });
 
     // Add summary section
     const finalY = doc.lastAutoTable.finalY + 10;
     doc.setFontSize(10);
-    doc.setTextColor(40, 53, 147);
+    doc.setTextColor(0, 0, 0);
     doc.text('Summary:', 14, finalY);
     doc.setTextColor(0, 0, 0);
     doc.text(`Total Members: ${members.length}`, 14, finalY + 7);

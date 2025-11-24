@@ -27,9 +27,9 @@ export const FIELD_MAP = {
 
     // Address
     "addressDetails.permanentAddress": "Permanent Address",
-    "addressDetails.permanentAddressBillPhoto": "Permanent Address Bill Photo",
+   // "addressDetails.permanentAddressBillPhoto": "Permanent Address Bill Photo",
     "addressDetails.currentResidentalAddress": "Current Address",
-    "addressDetails.currentResidentalBillPhoto": "Current Address Bill Photo",
+   // "addressDetails.currentResidentalBillPhoto": "Current Address Bill Photo",
     "addressDetails.previousCurrentAddress": "Previous Addresses",
 
     // References
@@ -37,17 +37,17 @@ export const FIELD_MAP = {
 
     // Documents - Text Fields
     "documents.panNo": "PAN No",
-    "documents.panNoPhoto": "PAN Card Photo",
+    //"documents.panNoPhoto": "PAN Card Photo",
     "documents.rationCard": "Ration Card",
-    "documents.rationCardPhoto": "Ration Card Photo",
+    //"documents.rationCardPhoto": "Ration Card Photo",
     "documents.drivingLicense": "Driving License",
-    "documents.drivingLicensePhoto": "Driving License Photo",
+   // "documents.drivingLicensePhoto": "Driving License Photo",
     "documents.aadhaarNo": "Aadhaar No",
-    "documents.aadhaarNoPhoto": "Aadhaar Card Photo",
+    //"documents.aadhaarNoPhoto": "Aadhaar Card Photo",
     "documents.voterId": "Voter ID",
-    "documents.voterIdPhoto": "Voter ID Photo",
+    //"documents.voterIdPhoto": "Voter ID Photo",
     "documents.passportNo": "Passport No",
-    "documents.passportNoPhoto": "Passport Photo",
+    //"documents.passportNoPhoto": "Passport Photo",
 
     // Professional - Basic
     "professionalDetails.qualification": "Qualification",
@@ -115,7 +115,8 @@ export const CATEGORY_MAP = {
     bankDetails: "Bank Details",
     referenceDetails: "Reference Details",
     guaranteeDetails: "Guarantee Details",
-    loanDetails: "Loan Details"
+    loanDetails: "Loan Details",
+    nomineeDetails: "Nominee Details",
 };
 
 // Helper functions
@@ -164,8 +165,43 @@ const formatDate = (dateValue) => {
     }
 };
 
+// Special function to format address objects without keys
+const formatAddressValue = (addressObj) => {
+    if (!addressObj || typeof addressObj !== 'object') return "";
+    
+    try {
+        const addressParts = [];
+        
+        // Add address components in a logical order without field names
+        if (addressObj.flatHouseNo) addressParts.push(addressObj.flatHouseNo);
+        if (addressObj.areaStreetSector) addressParts.push(addressObj.areaStreetSector);
+        if (addressObj.landmark) addressParts.push(addressObj.landmark);
+        if (addressObj.cityTown) addressParts.push(addressObj.cityTown);
+        if (addressObj.district) addressParts.push(addressObj.district);
+        if (addressObj.state) addressParts.push(addressObj.state);
+        if (addressObj.country) addressParts.push(addressObj.country);
+        if (addressObj.pinCode) addressParts.push(`Pincode: ${addressObj.pinCode}`);
+        
+        return addressParts.join(", ");
+    } catch (error) {
+        console.warn("Address formatting error:", error);
+        // Fallback to original formatting if error occurs
+        try {
+            return Object.entries(addressObj).map(([k, v]) => `${k}: ${formatValuePlain(v)}`).join("; ");
+        } catch {
+            return JSON.stringify(addressObj);
+        }
+    }
+};
+
 export const formatValuePlain = (value, fieldKey) => {
     if (value === undefined || value === null) return "";
+    
+    // Handle address fields specifically - format without keys
+    if (fieldKey === "addressDetails.permanentAddress" || 
+        fieldKey === "addressDetails.currentResidentalAddress") {
+        return formatAddressValue(value);
+    }
     
     // Handle date fields specifically
     if (fieldKey === "personalDetails.dateOfBirth" || 

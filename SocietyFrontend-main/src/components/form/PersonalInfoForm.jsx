@@ -37,35 +37,35 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
           handleFieldChange(fieldName, inputValue);
         }}
         sx={{
-          '& .MuiOutlinedInput-root': {
+          "& .MuiOutlinedInput-root": {
             borderRadius: 2,
             backgroundColor: alpha(theme.palette.background.paper, 0.8),
-            transition: 'all 0.2s ease-in-out',
-            height: '56px', // Fixed height
-            '&:hover': {
+            transition: "all 0.2s ease-in-out",
+            height: "56px", // Fixed height
+            "&:hover": {
               backgroundColor: alpha(theme.palette.background.paper, 0.9),
             },
-            '&.Mui-focused': {
+            "&.Mui-focused": {
               backgroundColor: theme.palette.background.paper,
               boxShadow: `0 0 0 2px ${alpha(theme.palette.primary.main, 0.2)}`,
-            }
+            },
           },
-          '& .MuiAutocomplete-input': {
-            padding: '8.5px 4px 8.5px 6px !important', // Match textfield padding
-          }
+          "& .MuiAutocomplete-input": {
+            padding: "8.5px 4px 8.5px 6px !important", // Match textfield padding
+          },
         }}
         renderInput={(params) => (
           <StyledTextField
             {...params}
             label={label}
             sx={{
-              '& .MuiInputLabel-root': {
-                fontSize: '0.9rem',
+              "& .MuiInputLabel-root": {
+                fontSize: "0.9rem",
                 fontWeight: 500,
               },
-              '& .MuiInputBase-root': {
-                height: '56px', // Consistent height
-              }
+              "& .MuiInputBase-root": {
+                height: "56px", // Consistent height
+              },
             }}
           />
         )}
@@ -109,43 +109,47 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
 
   // Common text field styles
   const textFieldStyles = {
-    '& .MuiOutlinedInput-root': {
+    "& .MuiOutlinedInput-root": {
       borderRadius: 2,
       backgroundColor: alpha(theme.palette.background.paper, 0.8),
-      transition: 'all 0.2s ease-in-out',
-      height: '56px', // Fixed height for all text fields
-      '&:hover': {
+      transition: "all 0.2s ease-in-out",
+      height: "56px", // Fixed height for all text fields
+      "&:hover": {
         backgroundColor: alpha(theme.palette.background.paper, 0.9),
       },
-      '&.Mui-focused': {
+      "&.Mui-focused": {
         backgroundColor: theme.palette.background.paper,
         boxShadow: `0 0 0 2px ${alpha(theme.palette.primary.main, 0.2)}`,
-      }
+      },
     },
-    '& .MuiInputLabel-root': {
-      fontSize: '0.9rem',
+    "& .MuiInputLabel-root": {
+      fontSize: "0.9rem",
       fontWeight: 500,
-    }
+    },
   };
 
   return (
-    <Card sx={{
-      borderRadius: 4,
-      boxShadow: "0 12px 40px rgba(0,0,0,0.12)",
-      background: `linear-gradient(135deg, ${theme.palette.background.paper} 0%, ${alpha(theme.palette.background.default, 0.8)} 100%)`,
-      border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
-      overflow: 'hidden',
-      position: 'relative',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        height: 4,
-        background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-      }
-    }}>
+    <Card
+      sx={{
+        borderRadius: 4,
+        boxShadow: "0 12px 40px rgba(0,0,0,0.12)",
+        background: `linear-gradient(135deg, ${
+          theme.palette.background.paper
+        } 0%, ${alpha(theme.palette.background.default, 0.8)} 100%)`,
+        border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
+        overflow: "hidden",
+        position: "relative",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 4,
+          background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+        },
+      }}
+    >
       <CardContent sx={{ p: 5 }}>
         <SectionHeader
           icon={
@@ -154,16 +158,16 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
                 backgroundColor: alpha(theme.palette.primary.main, 0.1),
                 borderRadius: 3,
                 p: 1.5,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
               }}
             >
               <PersonIcon
                 sx={{
                   color: theme.palette.primary.main,
-                  fontSize: 28
+                  fontSize: 28,
                 }}
               />
             </Box>
@@ -172,21 +176,22 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
           subtitle="Basic member details and identification"
           sx={{
             mb: 4,
-            '& .MuiTypography-h5': {
-              background: `linear-gradient(135deg, ${theme.palette.text.primary} 0%, ${alpha(theme.palette.text.primary, 0.8)} 100%)`,
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+            "& .MuiTypography-h5": {
+              background: `linear-gradient(135deg, ${
+                theme.palette.text.primary
+              } 0%, ${alpha(theme.palette.text.primary, 0.8)} 100%)`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
               fontWeight: 700,
             },
-            '& .MuiTypography-subtitle1': {
+            "& .MuiTypography-subtitle1": {
               color: theme.palette.text.secondary,
-              fontSize: '0.95rem',
-            }
+              fontSize: "0.95rem",
+            },
           }}
         />
 
         <Grid container spacing={3}>
-
           {/* Membership Number */}
           <Grid size={{ xs: 12, md: 3 }}>
             <StyledTextField
@@ -217,7 +222,7 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
 
           {/* Title ComboBox */}
           <Grid size={{ xs: 12, md: 2 }}>
-            <Box sx={{ position: 'relative' }}>
+            <Box sx={{ position: "relative" }}>
               <ComboBox
                 label="Title"
                 fieldName="title"
@@ -233,7 +238,9 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
               label="Name of Member"
               name="nameOfMember"
               value={personalInfo.nameOfMember || ""}
-              onChange={(e) => handleFieldChange("nameOfMember", e.target.value)}
+              onChange={(e) =>
+                handleFieldChange("nameOfMember", e.target.value)
+              }
               sx={textFieldStyles}
             />
           </Grid>
@@ -252,7 +259,9 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
               label="Name of Father"
               name="nameOfFather"
               value={personalInfo.nameOfFather || ""}
-              onChange={(e) => handleFieldChange("nameOfFather", e.target.value)}
+              onChange={(e) =>
+                handleFieldChange("nameOfFather", e.target.value)
+              }
               sx={textFieldStyles}
             />
           </Grid>
@@ -271,7 +280,28 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
               label="Name of Mother"
               name="nameOfMother"
               value={personalInfo.nameOfMother || ""}
-              onChange={(e) => handleFieldChange("nameOfMother", e.target.value)}
+              onChange={(e) =>
+                handleFieldChange("nameOfMother", e.target.value)
+              }
+              sx={textFieldStyles}
+            />
+          </Grid>
+
+          {/* Amount In Credit */}
+          <Grid size={{ xs: 12, md: 4 }}>
+            <StyledTextField
+              label="Amount In Credit"
+              name="amountInCredit"
+              type="number"
+              value={personalInfo.amountInCredit || ""}
+              onChange={(e) =>
+                handleFieldChange("amountInCredit", e.target.value)
+              }
+              onKeyPress={(e) => {
+                if (!/[0-9]/.test(e.key)) {
+                  e.preventDefault();
+                }
+              }}
               sx={textFieldStyles}
             />
           </Grid>
@@ -300,9 +330,9 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
               InputProps={{ readOnly: true }}
               sx={{
                 ...textFieldStyles,
-                '& .MuiOutlinedInput-root': {
-                  ...textFieldStyles['& .MuiOutlinedInput-root'],
-                }
+                "& .MuiOutlinedInput-root": {
+                  ...textFieldStyles["& .MuiOutlinedInput-root"],
+                },
               }}
             />
           </Grid>
@@ -325,7 +355,9 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
                   label="Guardian Name"
                   name="guardianName"
                   value={personalInfo.guardianName || ""}
-                  onChange={(e) => handleFieldChange("guardianName", e.target.value)}
+                  onChange={(e) =>
+                    handleFieldChange("guardianName", e.target.value)
+                  }
                   sx={textFieldStyles}
                 />
               </Grid>
@@ -402,7 +434,9 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
                     label="Name of Spouse"
                     name="nameOfSpouse"
                     value={personalInfo.nameOfSpouse || ""}
-                    onChange={(e) => handleFieldChange("nameOfSpouse", e.target.value)}
+                    onChange={(e) =>
+                      handleFieldChange("nameOfSpouse", e.target.value)
+                    }
                     sx={textFieldStyles}
                   />
                 </Grid>
@@ -426,16 +460,16 @@ const PersonalInfoForm = ({ formData, handleChange }) => {
               sx={{
                 borderBottom: `2px solid ${alpha(theme.palette.divider, 0.1)}`,
                 my: 2,
-                position: 'relative',
-                '&::after': {
+                position: "relative",
+                "&::after": {
                   content: '""',
-                  position: 'absolute',
+                  position: "absolute",
                   bottom: -2,
                   left: 0,
-                  width: '100px',
+                  width: "100px",
                   height: 2,
                   background: `linear-gradient(90deg, ${theme.palette.primary.main}, transparent)`,
-                }
+                },
               }}
             />
           </Grid>
