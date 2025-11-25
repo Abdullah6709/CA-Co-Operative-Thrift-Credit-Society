@@ -20,6 +20,9 @@ import PDCDetails from '../pages/Loan/PdcDetail.jsx';
 import LoanView from '../pages/Loan/LoanView.jsx';
 import LoanCreationWizard from '../pages/Loan/LoanCreationWizard.jsx';
 
+
+import ExpPdf from '../pages/Exp/ExpPdf.jsx'; 
+
 const MainRoutes = () => {
   return (
     <Routes>
@@ -41,6 +44,10 @@ const MainRoutes = () => {
         <Route path="/member/view/:id" element={<MemberViewPage />} />
         <Route path="/member/edit/:id" element={<MemberEditPage />} />
         <Route path="/notice" element={<NoticePage />} />
+
+
+
+        <Route path="/exppdf" element={<ExpPdf />} />
       </Route>
     </Routes>
   )
